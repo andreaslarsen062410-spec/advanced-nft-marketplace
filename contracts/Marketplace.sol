@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-// import "./NFT.sol";
+import "./NFT.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
@@ -66,33 +66,33 @@ contract Marketplace is ReentrancyGuard {
         _marketItemIds.increment();
         uint256 marketItemId = _marketItemIds.current();
 
-        // address creator = NFT(nftContractAddress).getTokenCreatorById(tokenId);
+        address creator = NFT(nftContractAddress).getTokenCreatorById(tokenId);
 
-        // marketItemIdToMarketItem[marketItemId] = MarketItem(
-        //     marketItemId,
-        //     nftContractAddress,
-        //     tokenId,
-        //     // payable(creator),
-        //     payable(msg.sender),
-        //     payable(address(0)),
-        //     price,
-        //     false,
-        //     false
-        // // );
+        marketItemIdToMarketItem[marketItemId] = MarketItem(
+            marketItemId,
+            nftContractAddress,
+            tokenId,
+            payable(creator),
+            payable(msg.sender),
+            payable(address(0)),
+            price,
+            false,
+            false
+        );
 
-        // IERC721(nftContractAddress).transferFrom(msg.sender, address(this), tokenId);
+        IERC721(nftContractAddress).transferFrom(msg.sender, address(this), tokenId);
 
-        // // emit MarketItemCreated(
-        //     marketItemId,
-        //     nftContractAddress,
-        //     tokenId,
-        //     // payable(creator),
-        //     payable(msg.sender),
-        //     payable(address(0)),
-        //     price,
-        //     false,
-        //     false
-        // );
+        emit MarketItemCreated(
+            marketItemId,
+            nftContractAddress,
+            tokenId,
+            payable(creator),
+            payable(msg.sender),
+            payable(address(0)),
+            price,
+            false,
+            false
+        );
 
         return marketItemId;
     }
