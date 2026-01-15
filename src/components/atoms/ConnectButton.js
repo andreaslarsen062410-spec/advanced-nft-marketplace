@@ -13,5 +13,6 @@ const onClick = () => {
     if (hasWindowEthereum) {
       return initializeWeb3()
     }
-
+return window.open('https://metamask.io/', '_blank')
+  }
 }
