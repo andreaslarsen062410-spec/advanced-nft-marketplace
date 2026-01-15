@@ -15,4 +15,5 @@ const onClick = () => {
     }
 return window.open('https://metamask.io/', '_blank')
   }
+   return <Button color="inherit" onClick={onClick}>{buttonText}</Button>
 }
