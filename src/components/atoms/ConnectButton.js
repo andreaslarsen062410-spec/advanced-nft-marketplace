@@ -8,6 +8,10 @@ const [hasWindowEthereum, setHasWindowEthereum] = useState(false)
  useEffect(() => {
     setHasWindowEthereum(window.ethereum)
   }, [])
-  
+    const buttonText = hasWindowEthereum ? 'Connect' : 'Download Metamask'
+const onClick = () => {
+    if (hasWindowEthereum) {
+      return initializeWeb3()
+    }
 
 }
