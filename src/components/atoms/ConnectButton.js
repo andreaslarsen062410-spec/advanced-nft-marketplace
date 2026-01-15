@@ -5,6 +5,9 @@ import { Web3Context } from '../providers/Web3Provider'
 export default function ConnectButton () {
 const { initializeWeb3 } = useContext(Web3Context)
 const [hasWindowEthereum, setHasWindowEthereum] = useState(false)
-
+ useEffect(() => {
+    setHasWindowEthereum(window.ethereum)
+  }, [])
+  
 
 }
